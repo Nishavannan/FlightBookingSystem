@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -53,7 +54,7 @@ public class FlightServices {
             flight.setAvailableSeats(flight.getAvailableSeats()+seats);
     }
 
-    public List<Flight> search(String source, String destination, LocalDateTime date){
+    public List<Flight> search(String source, String destination, LocalDate date){
         String src = source.trim().toUpperCase();
         String dest = destination.trim().toUpperCase();
         return flightData.getFlightMap().values().stream()

@@ -7,6 +7,8 @@ public class InMemoryData {
     private final AtomicInteger passengerId = new AtomicInteger(0);
     private Map<String ,Flight> flightMap = new LinkedHashMap<>();
     private final AtomicInteger flightId = new AtomicInteger(0);
+    private Map<String, Booking> bookingMap = new LinkedHashMap<>();
+    private final AtomicInteger bookingId = new AtomicInteger(0);
 
     public String nextPassengerId(){
         return "P-" + passengerId.getAndIncrement();
@@ -22,6 +24,15 @@ public class InMemoryData {
 
     public Map<String, Flight> getFlightMap(){
         return flightMap;
+    }
+
+
+    public String nextBookingId(){
+        return "B-" + bookingId.getAndIncrement();
+    }
+
+    public Map<String,Booking> getBookingMap(){
+        return bookingMap;
     }
 
 

@@ -21,7 +21,7 @@ public class PassengerServices {
     }
 
     // return passenger based on id
-    public Optional<Passenger> getPassengerBasedOnId(String id, Map<String,Passenger> map){
+    public Optional<Passenger> getPassengerById(String id){
         return Optional.ofNullable(passengerData.getPassengerMap().get(id));
     }
 
