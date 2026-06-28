@@ -23,7 +23,7 @@ public class BookingSevices {
         return Optional.ofNullable(bookingData.getBookingMap().get(id));
     }
 
-    public Optional<Booking> createBooking(String passengerId, String flightId, int seats){
+    public Optional<Booking> createBooking(String flightId, String passengerId, int seats){
         Optional<Flight> f = flightServices.getFightById(flightId);
         Optional<Passenger> p = passengerServices.getPassengerById(passengerId);
         if(!f.isPresent() || !p.isPresent() || seats<=0){

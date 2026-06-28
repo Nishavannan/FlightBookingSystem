@@ -6,11 +6,12 @@ public class Passenger {
     private String phno;
     private String email;
 
-    public Passenger(String id,String name, String phno, String email){
+    public Passenger(String id,String name,String email, String phno){
         this.id = id;
         this.name = name;
-        this.phno = phno;
         this.email = email;
+        this.phno = phno;
+
     }
 
     public String getId(){

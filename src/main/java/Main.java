@@ -52,34 +52,34 @@ public class Main {
         System.out.println("7) List Bookings");
         System.out.println("8) Cancel Booking");
         System.out.println("9) Exit");
-        System.out.println("Choose: ");
+        System.out.print("Choose: ");
     }
 
     //1. add flight
     public static void addFlight(Scanner sc, FlightServices fs) {
-        System.out.println("Source(e.g., BLR): ");
+        System.out.print("Source(e.g., BLR): ");
         String src = sc.nextLine();
-        System.out.println("Destination (e.g., DEL): ");
+        System.out.print("Destination (e.g., DEL): ");
         String dest = sc.nextLine();
-        System.out.println("Departure (yyyy-MM-dd HH:mm)");
+        System.out.print("Departure (yyyy-MM-dd HH:mm)");
         LocalDateTime deptTime = LocalDateTime.parse(sc.nextLine().trim(), DT_FMT);
-        System.out.println("Arrival (yyyy-MM-dd HH:mm)");
+        System.out.print("Arrival (yyyy-MM-dd HH:mm)");
         LocalDateTime arrTime = LocalDateTime.parse(sc.nextLine().trim(), DT_FMT);
-        System.out.println("Total seats: ");
+        System.out.print("Total seats: ");
         int totSeats = Integer.parseInt(sc.nextLine());
-        System.out.println("Price per seat: ");
+        System.out.print("Price per seat: ");
         double price = Double.parseDouble(sc.nextLine().trim());
         Flight f = fs.addFlight(src, dest, deptTime, arrTime, totSeats, price);
-
+        System.out.println("Added: " + f);
     }
 
     //2. add passengers
     public static void addPassenger(Scanner sc, PassengerServices ps) {
-        System.out.println("Name :");
+        System.out.print("Name :");
         String name = sc.nextLine();
-        System.out.println("Email :");
+        System.out.print("Email :");
         String email = sc.nextLine();
-        System.out.println("Phone :");
+        System.out.print("Phone :");
         String phone = sc.nextLine();
         Passenger p = ps.addPassenger(name, email, phone);
         System.out.println("Added: " + p);
@@ -88,13 +88,13 @@ public class Main {
     //3. Search Filght
     private static void searchFlights(Scanner sc, FlightServices fs) {
         try {
-            System.out.println("Source (e.g., BLR): ");
+            System.out.print("Source (e.g., BLR): ");
             String src = sc.nextLine();
 
-            System.out.println("Destination (e.g., DEL): ");
+            System.out.print("Destination (e.g., DEL): ");
             String dest = sc.nextLine();
 
-            System.out.println("Date (yyyy-MM-dd): ");
+            System.out.print("Date (yyyy-MM-dd): ");
             LocalDate date = LocalDate.parse(sc.nextLine().trim(), D_FMT);
             List<Flight> results = fs.search(src, dest, date);
             if (results.isEmpty()) {
@@ -111,13 +111,14 @@ public class Main {
     private static void bookSeats(Scanner sc, BookingSevices bs, FlightServices fs, PassengerServices ps) {
         try {
             listFlights(fs);
-            System.out.println("Enter the Flight ID to book: ");
+            System.out.print("Enter the Flight ID to book: ");
             String flightId = sc.nextLine().trim();
 
-            System.out.println("Enter the Passenger ID: ");
+            listPassengers(ps);
+            System.out.print("Enter the Passenger ID: ");
             String passengerId = sc.nextLine().trim();
 
-            System.out.println("Enter the seates to book: ");
+            System.out.print("Enter the seates to book: ");
             int seats = Integer.parseInt(sc.nextLine().trim());
 
             Optional<Booking> b = bs.createBooking(flightId, passengerId, seats);
